@@ -1,0 +1,21 @@
+.item {
+  background-color: var(--purple-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  cursor: pointer;
+  box-shadow: inset -1px 17px 0px -3px #16161a;
+  transition: all 0.2s;
+}
+.item:hover {
+  background-color: var(--background-color);
+  box-shadow: inset -1px 17px 0px -3px var(--background-color);
+}
+.one {
+  background-color: var(--main-color);
+  box-shadow: inset -1px 7.5px 0px -2px #16161acf;
+}
+.two {
+  background-color: var(--yellow-color);
+  box-shadow: inset -1px 7.5px 0px -2px #16161acf;
+}

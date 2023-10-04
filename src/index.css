@@ -1,0 +1,36 @@
+:root {
+  --main-color: #ff6e6c;
+  --secondary-color: #67568c;
+  --background-color: #ffffff;
+  --purple-color: #7f5af0;
+  --yellow-color: #fbdd74;
+}
+body {
+  background-color: var(--purple-color);
+  overflow: hidden;
+  font-family: 'Chillax', sans-serif;
+}
+/* 
+animation: {
+  "slide-in": "slide-in 1s ease-out",
+  "fade-in": "fade-in 2s ease-out",
+}, */
+@keyframes slide-in {
+  0% {
+    transform: translateY(-650%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
