@@ -1,42 +1,17 @@
 import {ReactComponent as BackgroundWhite} from '../../assets/board-layer-white-large.svg';
 import {ReactComponent as BackgroundBlack} from '../../assets/board-layer-black-large.svg';
 import {useEffect, useState} from 'react';
-import {Card} from './Card';
 import styles from './Play.module.css';
-type playersI = 'one' | 'two';
-let arr = Array.from({length: 42}, (_, i) => ({selectedBy: '', position: i}));
-interface DataI {
-  selectedBy: string;
-  position: number;
-}
-export const Play = () => {
-  const [data, setData] = useState<DataI[]>([]);
-  const [turnPlayer, setTurnPlayer] = useState<playersI>('one');
-  useEffect(() => {
-    setData(arr);
-  }, []);
-  useEffect(() => {
-    isWinner();
-  }, [data]);
+import PlayBoard from '../Board/PlayBoard';
+import {ithAvailable, makeMove} from '../../utils';
+import Marker from '../marker/Marker';
 
-  const selectData = (i: number, player: number) => {
-    const changeData = [...data];
-    changeData[i].selectedBy = turnPlayer;
-    setData(changeData);
-    setTurnPlayer(turnPlayer === 'one' ? 'two' : 'one');
-  };
-  const isWinner = () => {
-    const limitHigher = 42;
-    const limitLower = 0;
-    let winner = '';
-    let selecteds: DataI[] = [];
-    data.forEach((dataS) => {
-      if (dataS.selectedBy) {
-        selecteds.push(dataS);
-      }
-    });
-    console.log(selecteds);
-  };
+const NEWGAME: number[][] = new Array(6).fill(new Array(7).fill(0));
+
+export const Play = () => {
+  const [gameState, setGameState] = useState(NEWGAME);
+  const [playerOneTurn, setPlayerOneTurn] = useState(true);
+  const [hoverTo, setHoverTo] = useState(0);
   return (
     <div className={styles.containerAll}>
       <section className={styles.cardPlayer}>
@@ -44,8 +19,9 @@ export const Play = () => {
       </section>
       <BackgroundBlack className={styles['black-background']} />
       <BackgroundWhite className={styles['white-background']} />
-
       <div className={styles.container}>
+        <Marker isPlayerOneTurn={playerOneTurn} hoverTo={hoverTo} />
+        <PlayBoard gameState={gameState} />
         {new Array(7).fill(0).map((col, i) => (
           <button
             // disabled={
@@ -53,7 +29,7 @@ export const Play = () => {
             //   Boolean(isGameEnded) ||
             //   (!isPlayer1Turn && isAgainstCPU)
             // }
-            // onMouseEnter={() => setHoveringOver(i)}
+            onMouseEnter={() => setHoverTo(i)}
             // key={i}
             className={styles.buttons}
             onClick={() => {
@@ -67,7 +43,14 @@ export const Play = () => {
       </section>
     </div>
   );
-  function handleOnClick(j: number): any {
+  function handleOnClick(j: number) {
     console.log(j);
+    let i = ithAvailable(gameState, j) as number;
+    const [newGameState] = makeMove(gameState, playerOneTurn, i, j);
+    setGameState(newGameState);
+    getTurn();
+  }
+  function getTurn(): void {
+    setPlayerOneTurn(!playerOneTurn);
   }
 };

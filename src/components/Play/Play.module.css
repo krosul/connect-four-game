@@ -1,14 +1,13 @@
 .container {
-  position: absolute;
-  inset: 0;
+  position: relative;
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 5px;
-  width: 600px;
+  width: 625px;
   height: 594px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* top: 50%;
+  left: 50%; */
+  inset: 0;
 }
 .buttons {
   height: 100%;
@@ -16,10 +15,12 @@
   background-color: transparent;
   cursor: pointer;
   border: none;
+  z-index: 500;
 }
 .containerAll {
   display: flex;
   width: fit-content;
+  height: fit-content;
   justify-content: space-between;
   align-items: center;
   position: relative;
@@ -29,12 +30,14 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 35;
 }
 .black-background {
   position: absolute;
-  top: 55%;
+  top: 50.5%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 20;
 }
 .cardPlayer {
   /* padding: 12px;
