@@ -9,10 +9,10 @@
 body {
   background-color: var(--purple-color);
   overflow: hidden;
-  font-family: 'Space Grotesk', sans-serif;
 }
 
 * {
+  font-family: 'Roboto', sans-serif;
   font-family: 'Space Grotesk', sans-serif;
 }
 /* 

@@ -20,7 +20,7 @@ function App() {
     setOptionSelected('');
   };
   const selectedOptions = {
-    rules: <Rules />,
+    rules: <Rules goToMenu={clickToMenu} />,
     play: <Play clickToMenu={clickToMenu} />,
     '': '',
   };
