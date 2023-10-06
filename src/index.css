@@ -8,11 +8,15 @@
 body {
   background-color: var(--purple-color);
   overflow: hidden;
-  font-family: 'Chillax', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+* {
+  font-family: 'Space Grotesk', sans-serif;
 }
 /* 
 animation: {
-  "slide-in": "slide-in 1s ease-out",
+  "slide-in": "slide-in 1s ease-out",      
   "fade-in": "fade-in 2s ease-out",
 }, */
 @keyframes slide-in {

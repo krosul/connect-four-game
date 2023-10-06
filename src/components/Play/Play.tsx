@@ -5,6 +5,7 @@ import styles from './Play.module.css';
 import PlayBoard from '../Board/PlayBoard';
 import {ithAvailable, makeMove} from '../../utils';
 import Marker from '../marker/Marker';
+import {PlayerCard} from '../playerCard/PlayerCard';
 
 const NEWGAME: number[][] = new Array(6).fill(new Array(7).fill(0));
 
@@ -14,9 +15,7 @@ export const Play = () => {
   const [hoverTo, setHoverTo] = useState(0);
   return (
     <div className={styles.containerAll}>
-      <section className={styles.cardPlayer}>
-        <h1>Jugador uno</h1>
-      </section>
+      <PlayerCard isForPlayerOne={true} isAgaintsCPU={false} />
       <BackgroundBlack className={styles['black-background']} />
       <BackgroundWhite className={styles['white-background']} />
       <div className={styles.container}>
@@ -38,9 +37,7 @@ export const Play = () => {
           ></button>
         ))}
       </div>
-      <section className={styles.cardPlayer}>
-        <h1>Jugador uno</h1>
-      </section>
+      <PlayerCard isForPlayerOne={false} isAgaintsCPU={false} />
     </div>
   );
   function handleOnClick(j: number) {

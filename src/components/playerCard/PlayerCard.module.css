@@ -1,0 +1,28 @@
+.container {
+  width: 144px;
+  height: 156px;
+  background-color: var(--background-color);
+  border: 3px solid #16161a;
+  border-radius: 20px;
+  box-shadow: 0px 10px 0px -3px #16161a;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.title {
+  margin-top: 30px;
+  font-size: medium;
+  text-align: center;
+}
+
+.num {
+  text-align: center;
+  font-size: 75px;
+  padding: 0px;
+  margin: 0px;
+}

@@ -4,6 +4,8 @@ import {Button} from './components/button/Button';
 import {Rules} from './components/rules/Rules';
 import {Play} from './components/Play/Play';
 import {ReactComponent as Logo} from './assets/logo.svg';
+import {ReactComponent as PlayerCPU} from './assets/player-vs-cpu.svg';
+import {ReactComponent as PlayesVsPlayer} from './assets/player-vs-player.svg';
 type optionsMenu = 'play' | 'rules' | '';
 
 function App() {
@@ -28,11 +30,16 @@ function App() {
         <div className={styles.container}>
           <Logo />
           <div className={styles.div}>
-            <Button icon={'play'} backgroundColor={'orange'} onclick={clickToPlay}>
-              Jugar
+            <Button backgroundColor="orange" onclick={clickToPlay}>
+              Jugador vs CPU
+              <PlayerCPU />
             </Button>
-            <Button icon={'settings'} backgroundColor={'white'} onclick={clickToSettings}>
-              Configuracion
+            <Button backgroundColor="yellow" onclick={clickToPlay}>
+              Jugador vs Jugador
+              <PlayesVsPlayer />
+            </Button>
+            <Button backgroundColor={'white'} onclick={clickToSettings}>
+              Reglas del juego
             </Button>
           </div>
         </div>
