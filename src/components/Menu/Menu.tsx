@@ -1,13 +1,19 @@
+import {FC} from 'react';
 import {ReactComponent as Logo} from '../../assets/logo.svg';
 
 import styles from './Menu.module.css';
 
-export default function Menu() {
+interface Props {
+  reset: () => void;
+  clickToMenu: () => void;
+}
+
+export const Menu: FC<Props> = ({reset, clickToMenu}) => {
   return (
     <div className={styles['container-menu']}>
-      <button>Menu</button>
+      <button onClick={clickToMenu}>Menu</button>
       <Logo />
-      <button>Reiniciar</button>
+      <button onClick={reset}>Reiniciar</button>
     </div>
   );
-}
+};

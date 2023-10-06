@@ -21,7 +21,7 @@ function App() {
   };
   const selectedOptions = {
     rules: <Rules />,
-    play: <Play />,
+    play: <Play clickToMenu={clickToMenu} />,
     '': '',
   };
   return (

@@ -1,22 +1,32 @@
 import {ReactComponent as BackgroundWhite} from '../../assets/board-layer-white-large.svg';
 import {ReactComponent as BackgroundBlack} from '../../assets/board-layer-black-large.svg';
-import {useEffect, useState} from 'react';
+import {FC, useEffect, useState} from 'react';
 import styles from './Play.module.css';
 import PlayBoard from '../Board/PlayBoard';
 import {ithAvailable, makeMove} from '../../utils';
 import Marker from '../marker/Marker';
 import {PlayerCard} from '../playerCard/PlayerCard';
-import Menu from '../Menu/Menu';
+import {Menu} from '../Menu/Menu';
 
 const NEWGAME: number[][] = new Array(6).fill(new Array(7).fill(0));
 
-export const Play = () => {
+interface Props {
+  clickToMenu: () => void;
+}
+
+export const Play: FC<Props> = ({clickToMenu}) => {
   const [gameState, setGameState] = useState(NEWGAME);
   const [playerOneTurn, setPlayerOneTurn] = useState(true);
   const [hoverTo, setHoverTo] = useState(0);
   return (
     <>
-      <Menu />
+      <Menu
+        reset={() => {
+          setGameState(NEWGAME);
+          setPlayerOneTurn(true);
+        }}
+        clickToMenu={clickToMenu}
+      />
       <div className={styles.containerAll}>
         <PlayerCard isForPlayerOne={true} isAgaintsCPU={false} />
         <BackgroundBlack className={styles['black-background']} />
