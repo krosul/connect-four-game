@@ -1,0 +1,56 @@
+.container-timer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 70;
+  display: grid;
+  align-items: end;
+  justify-content: center;
+}
+.center {
+  position: relative;
+  width: 100%;
+  bottom: -25px;
+}
+.background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.background-black {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+.timer-red {
+  fill: var(--main-color);
+  color: var(--background-color);
+  z-index: 100;
+}
+.timer-yellow {
+  fill: var(--yellow-color);
+  color: #16161a;
+}
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 135px;
+  width: 205px;
+  z-index: 105;
+  text-align: center;
+}
+.title {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.seconds {
+  font-size: 55px;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 700;
+}

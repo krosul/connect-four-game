@@ -4,8 +4,6 @@ import {ReactComponent as MarkerYellow} from '../../assets/marker-yellow.svg';
 import styles from './Marker.module.css';
 
 function Marker({isPlayerOneTurn, hoverTo}: MarkerProps) {
-  console.log(hoverTo);
-
   return (
     <div
       className={styles.container}

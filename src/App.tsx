@@ -10,7 +10,11 @@ type optionsMenu = 'play' | 'rules' | '';
 
 function App() {
   const [optionSelected, setOptionSelected] = useState<optionsMenu>('');
-  const clickToPlay = () => {
+  const [isAgaintsCPU, setIsAgaintsCPU] = useState(false);
+
+  const clickToPlay = (vsCPU?: boolean) => {
+    if (vsCPU) setIsAgaintsCPU(true);
+
     setOptionSelected('play');
   };
   const clickToSettings = () => {
@@ -30,7 +34,7 @@ function App() {
         <div className={styles.container}>
           <Logo />
           <div className={styles.div}>
-            <Button backgroundColor="orange" onclick={clickToPlay}>
+            <Button backgroundColor="orange" onclick={() => clickToPlay(true)}>
               Jugador vs CPU
               <PlayerCPU />
             </Button>

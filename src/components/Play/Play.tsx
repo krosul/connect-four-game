@@ -7,6 +7,7 @@ import {ithAvailable, makeMove} from '../../utils';
 import Marker from '../marker/Marker';
 import {PlayerCard} from '../playerCard/PlayerCard';
 import {Menu} from '../Menu/Menu';
+import {Timer} from '../timer/Timer';
 
 const NEWGAME: number[][] = new Array(6).fill(new Array(7).fill(0));
 
@@ -18,6 +19,19 @@ export const Play: FC<Props> = ({clickToMenu}) => {
   const [gameState, setGameState] = useState(NEWGAME);
   const [playerOneTurn, setPlayerOneTurn] = useState(true);
   const [hoverTo, setHoverTo] = useState(0);
+  const [time, setTime] = useState(30);
+  useEffect(() => {
+    if (time < 0) {
+      setPlayerOneTurn(!playerOneTurn);
+      setTime(30);
+      return () => {};
+    }
+    const interval = setInterval(() => {
+      setTime(time - 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [time]);
+
   return (
     <>
       <Menu
@@ -32,17 +46,19 @@ export const Play: FC<Props> = ({clickToMenu}) => {
         <BackgroundBlack className={styles['black-background']} />
         <BackgroundWhite className={styles['white-background']} />
         <div className={styles.container}>
+          <Timer isPlayerOneTurn={playerOneTurn} timer={time} />
           <Marker isPlayerOneTurn={playerOneTurn} hoverTo={hoverTo} />
           <PlayBoard gameState={gameState} />
           {new Array(7).fill(0).map((col, i) => (
             <button
-              // disabled={
-              //   gameState[0][i] !== 0 ||
-              //   Boolean(isGameEnded) ||
-              //   (!isPlayer1Turn && isAgainstCPU)
-              // }
+              disabled={
+                gameState[0][i] !== 0
+                // ||
+                // Boolean(isGameEnded) ||
+                // (!isPlayer1Turn && isAgainstCPU)
+              }
               onMouseEnter={() => setHoverTo(i)}
-              // key={i}
+              key={i}
               className={styles.buttons}
               onClick={() => {
                 handleOnClick(i);
@@ -55,7 +71,8 @@ export const Play: FC<Props> = ({clickToMenu}) => {
     </>
   );
   function handleOnClick(j: number) {
-    console.log(j);
+    // console.log(j);
+    setTime(30);
     let i = ithAvailable(gameState, j) as number;
     const [newGameState] = makeMove(gameState, playerOneTurn, i, j);
     setGameState(newGameState);
